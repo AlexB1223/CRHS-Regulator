@@ -1,0 +1,40 @@
+{
+  "articles": [
+    {
+      "title": "Cedar Ridge Welcomes a New Season of Student Voices",
+      "deck": "The Regulator is open for submissions from every grade",
+      "section": "News",
+      "author": "The Editorial Staff",
+      "date": "2026-10-23",
+      "image": "",
+      "body": "Welcome to the first edition of the Cedar Ridge Regulator, the school’s home for news, sports, opinion, and the arts.\n\nThis is a sample article. Open the Editor’s Desk at /admin, log in, and you can edit or delete this story and publish your own.\n\nStories are written in plain text. Leave a blank line between paragraphs and they will be set in proper newspaper columns."
+    },
+    {
+      "title": "Ridgebacks Take the Homecoming Game in the Final Quarter",
+      "deck": "A late rally sends the home crowd into a frenzy",
+      "section": "Sports",
+      "author": "Sports Desk",
+      "date": "2026-10-20",
+      "image": "",
+      "body": "This is a placeholder sports story. Replace it with your own game recaps, player profiles, and season previews.\n\nTip: add a subhead (the italic line under the headline) for a quick summary of the story."
+    },
+    {
+      "title": "In Defense of the Longer Lunch Period",
+      "deck": "One student makes the case",
+      "section": "Opinion",
+      "author": "A. Student",
+      "date": "2026-10-16",
+      "image": "",
+      "body": "This is a placeholder opinion piece. Opinion pieces and blogs work just like news stories: pick the Opinion section when you write one."
+    },
+    {
+      "title": "Fall Play Auditions Draw a Record Crowd",
+      "deck": "",
+      "section": "Arts",
+      "author": "Arts Staff",
+      "date": "2026-10-12",
+      "image": "",
+      "body": "Another placeholder. Use the Arts section for music, theater, film, and visual art coverage."
+    }
+  ]
+}
