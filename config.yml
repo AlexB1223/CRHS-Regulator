@@ -1,7 +1,7 @@
 # Editor’s Desk settings. Change the repo line below to YOUR GitHub username and repository name.
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME
+  repo: AlexB1223/CRHS-Regulator
   branch: main
 
 # Optional: uncomment to make writers submit drafts that an editor approves before they go live.
