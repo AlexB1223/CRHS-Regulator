@@ -2,110 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The student newspaper of Cedar Ridge High School.">
-<title>The Cedar Ridge Regulator</title>
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Playfair+Display:wght@500;700;900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-:root{--paper:#f5f1e6;--ink:#1d1a16;--red:#771919;--redtx:#771919;--rule:#3a342b;--mute:#6a6254;--card:#efe9d9}
-@media (prefers-color-scheme:dark){:root{--paper:#1e1a17;--ink:#ece5d4;--redtx:#e39a9a;--rule:#b9ae98;--mute:#a79d89;--card:#28231f}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 "Old Standard TT",Georgia,"Times New Roman",serif;background-image:radial-gradient(rgba(120,90,40,.07) 1px,transparent 1px);background-size:5px 5px}
-.wrap{max-width:1100px;margin:0 auto;padding:0 18px 30px}
-.ear{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid var(--rule);padding:10px 0 6px;color:var(--mute)}
-.mast{text-align:center;padding:14px 0 8px;border-bottom:4px double var(--red)}
-.mast h1{font:700 clamp(40px,9vw,88px)/1 UnifrakturCook,"Old English Text MT",Georgia,serif;margin:0;color:var(--ink);cursor:pointer}
-.tag{font-style:italic;color:var(--mute);margin:6px 0 0;font-size:15px}
-nav{background:var(--red);display:flex;flex-wrap:wrap;justify-content:center;margin:10px 0 22px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
-nav button{background:none;border:0;color:#f5f1e6;font:700 13px "Playfair Display",Georgia,serif;letter-spacing:.16em;text-transform:uppercase;padding:11px 16px;cursor:pointer}
-nav button.on,nav button:hover,nav button:focus-visible{background:#f5f1e6;color:#771919;outline:0}
-button{font-family:inherit;cursor:pointer}
-.kick{font:700 12px "Playfair Display",Georgia,serif;letter-spacing:.18em;text-transform:uppercase;color:var(--redtx)}
-h2,h3{font-family:"Playfair Display",Georgia,serif;line-height:1.12;margin:.2em 0 .3em}
-.by{font-size:13px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:4px 0;margin:8px 0}
-.lead{display:grid;grid-template-columns:1.3fr 1fr;gap:26px;border-bottom:3px double var(--rule);padding-bottom:22px;margin-bottom:20px}
-.lead h2{font-size:clamp(30px,4.6vw,50px);font-weight:900}
-.lead.noimg{grid-template-columns:1fr}
-.deck{font-style:italic;font-size:19px;margin:0 0 6px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr)}
-.card{padding:0 20px;border-right:1px solid var(--rule);margin-bottom:24px}
-.card:nth-child(3n+1){padding-left:0}.card:nth-child(3n){border-right:0;padding-right:0}
-.card h3{font-size:23px;font-weight:700}
-.card p,.lead p{margin:.4em 0}
-.more{font:700 12px "Playfair Display",Georgia,serif;letter-spacing:.14em;text-transform:uppercase;color:var(--redtx);background:none;border:0;padding:0;border-bottom:1px solid var(--redtx)}
-.pic{width:100%;border:1px solid var(--rule);padding:4px;background:var(--card);filter:sepia(.35) contrast(1.05)}
-.art{max-width:720px;margin:0 auto}
-.art h2{font-size:clamp(32px,6vw,54px);font-weight:900;text-align:center}
-.art .deck,.art .kick{text-align:center;display:block}
-.art .body p{text-align:justify;hyphens:auto}
-.art .body p:first-child::first-letter{float:left;font:900 4.3em/.8 "Playfair Display",Georgia,serif;color:var(--redtx);padding:6px 8px 0 0}
-.back{background:none;border:1px solid var(--red);color:var(--redtx);padding:6px 14px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
-.empty{text-align:center;color:var(--mute);padding:50px 0;font-style:italic}
-footer{border-top:4px double var(--red);margin-top:10px;padding-top:12px;text-align:center;font-size:13px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
-@media(max-width:760px){.lead{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.card,.card:nth-child(n){padding:0 0 18px;border-right:0;border-bottom:1px solid var(--rule)}}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Regulator Editor’s Desk</title>
 </head>
 <body>
-<div class="wrap" id="root"><p class="empty">Loading the latest edition…</p></div>
-<script>
-// Sections show in this order. To add a new section: add it to admin/config.yml (the Section options), and optionally list it here.
-const ORDER=['News','Sports','Opinion','Arts','Student Life'];
-const D={title:'The Cedar Ridge Regulator',tagline:'',front_label:'Front Page',ear:'Cedar Ridge High School · Free to all students',vol:'Vol. I',empty_message:'No stories in this section yet. Check back soon.',footer:'Cedar Ridge High School · Published by the Journalism Staff'};
-let site=D,arts=[],sec='All';
-const $=s=>document.querySelector(s);
-const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const slug=t=>String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'story';
-const fmt=d=>{try{return new Date(String(d).slice(0,10)+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}catch(e){return d}};
-const inline=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
-const paras=b=>String(b||'').split(/\n\s*\n/).filter(Boolean);
-const cut=(b,n)=>{const t=(paras(b)[0]||'').replace(/\*/g,'');return t.length>n?t.slice(0,n).replace(/\s+\S*$/,'')+'…':t};
-const sorted=()=>arts.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
-const img=a=>a.image?`<img class="pic" src="${esc(a.image)}" alt="${esc(a.title)}">`:'';
-
-function render(){
-  const h0=location.hash.slice(1);
-  const one=h0.startsWith('a-')?arts.find(x=>x.id===h0.slice(2)):null;
-  const secs=[...ORDER,...[...new Set(arts.map(a=>a.section))].filter(s=>s&&!ORDER.includes(s))];
-  const today=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-  document.title=one?one.title+' | '+site.title:site.title;
-  let h=`<div class="ear"><span>${today}</span><span>${esc(site.ear)}</span><span>${esc(site.vol)}</span></div>
-  <header class="mast"><h1 id="t-home">${esc(site.title)}</h1>${site.tagline?`<p class="tag">${esc(site.tagline)}</p>`:''}</header>
-  <nav>${['All',...secs].map(s=>`<button data-sec="${esc(s)}" class="${!one&&s===sec?'on':''}">${s==='All'?esc(site.front_label):esc(s)}</button>`).join('')}</nav>`;
-  if(one){
-    h+=`<div class="art"><button class="back" id="t-back">← Back to the front page</button><article><span class="kick">${esc(one.section)}</span><h2>${esc(one.title)}</h2>${one.deck?`<p class="deck">${esc(one.deck)}</p>`:''}<div class="by">By ${esc(one.author||'Staff')} · ${fmt(one.date)}</div>${img(one)}<div class="body">${paras(one.body).map(p=>`<p>${inline(p)}</p>`).join('')}</div></article></div>`;
-  }else{
-    const list=sorted().filter(a=>sec==='All'||a.section===sec);
-    if(!list.length)h+=`<p class="empty">${esc(site.empty_message)}</p>`;
-    else{
-      const l=list[0];
-      h+=`<article class="lead${l.image?'':' noimg'}"><div><span class="kick">${esc(l.section)}</span><h2>${esc(l.title)}</h2>${l.deck?`<p class="deck">${esc(l.deck)}</p>`:''}<div class="by">By ${esc(l.author||'Staff')} · ${fmt(l.date)}</div><p>${esc(cut(l.body,420))}</p><button class="more" data-open="${l.id}">Continue reading</button></div>${l.image?`<div>${img(l)}</div>`:''}</article>`;
-      h+=`<section class="grid">${list.slice(1).map(a=>`<article class="card"><span class="kick">${esc(a.section)}</span><h3>${esc(a.title)}</h3><div class="by">${esc(a.author||'Staff')} · ${fmt(a.date)}</div>${img(a)}<p>${esc(cut(a.body,170))}</p><button class="more" data-open="${a.id}">Read more</button></article>`).join('')}</section>`;
-    }
-  }
-  h+=`<footer>© ${new Date().getFullYear()} ${esc(site.footer)}</footer>`;
-  $('#root').innerHTML=h;
-}
-
-document.addEventListener('click',e=>{
-  const t=e.target.closest('button,h1');if(!t)return;
-  if(t.dataset.sec){sec=t.dataset.sec;if(location.hash)location.hash='';else render()}
-  else if(t.dataset.open){location.hash='a-'+t.dataset.open;window.scrollTo(0,0)}
-  else if(t.id==='t-back'||t.id==='t-home'){sec='All';if(location.hash)location.hash='';else render()}
-});
-window.addEventListener('hashchange',render);
-
-(async()=>{
-  try{
-    const j=u=>fetch(u,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(u);return r.json()});
-    const [s,a]=await Promise.all([j('content/site.json'),j('content/articles.json')]);
-    site=Object.assign({},D,s);
-    const seen={};
-    arts=(a.articles||[]).map(x=>{let id=slug(x.title);seen[id]=(seen[id]||0)+1;if(seen[id]>1)id+='-'+seen[id];return Object.assign({},x,{id})});
-    render();
-  }catch(e){
-    $('#root').innerHTML='<p class="empty">The paper couldn’t load. If you opened this file straight from your computer, it needs to be on a web host (or run a local server) so it can read the content folder.</p>';
-  }
-})();
-</script>
+<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
