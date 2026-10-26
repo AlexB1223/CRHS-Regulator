@@ -1,0 +1,5 @@
+# Plain static site with no build step. Setting these explicitly stops Netlify
+# from auto-detecting a framework (it mistook config.yml for a Cecil site).
+[build]
+  command = ""
+  publish = "."
